@@ -1,0 +1,148 @@
+<div ng-include src="'views/nav/nav.html'"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 user-details">
+            <div class="user-image">
+                <img src="{{currentUser.profileImage || '/img/default-user.png'}}" height="150" width="150" class="img-circle">
+            </div>
+            <div class="col-sm-12 user-info-block">
+                <div class="user-heading">
+                    <h3>{{currentUser.firstName}} {{currentUser.lastName}}</h3>
+                    <span class="help-block">{{location.formattedAddress}}</span>
+                </div>
+                <ul class="navigation list-group">
+                    <li class="active">
+                        <a data-toggle="tab" href="#information">
+                            <i class="fa fa-user"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#favorites">
+                            <i class="fa fa-star"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#friends">
+                            <i class="fa fa-users"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#settings">
+                            <i class="fa fa-cog"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="user-body">
+                    <div class="tab-content">
+                        <div id="information" class="tab-pane active">
+                            <h4>Recent Activity</h4>
+                            <div ng-model="CommentModel" ng-repeat="comment in comments">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="comment-info">
+                                            <b><a href="#profile/{{comment.userId}}">{{comment.userId}}</a> on {{comment.date}}</b>
+                                        </div>
+                                        <div class="comment-body">
+                                            <br>
+                                            {{comment.comment}}
+
+                                            <br><br><i>You can find this event <a href="#details/{{comment.eventId}}">here</a>.</i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="favorites" class="tab-pane">
+                            <h4>Favorites</h4>
+
+                            <ul class="event-list" ng-repeat="fav in favorites">
+                                <li>
+                                    <time datetime="{{ fav.date }}">
+                                        <span class="day">{{fav.date | date:'dd'}}</span>
+                                        <span class="month">{{fav.date | date:'MMM'}}</span>
+                                        <span class="year">{{fav.date | date:'yyyy'}}</span>
+                                        <span class="time">ALL DAY</span>
+                                    </time>
+                                    <div class="info">
+                        <span class="title">
+                            {{ fav.title }}
+                        </span>
+
+                                        <p class="desc">{{fav.location}}</p>
+                                        <ul>
+                                            <li><a href="#details/{{fav.eventId}}" class="btn btn-primary"><i class="fa fa-info"></i> Info</a></li>
+                                            <li><a ng-click="unFavorite($index)" class="btn btn-danger"><i
+                                                    class="fa fa-star"></i> Unfavorite</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="friends" class="tab-pane">
+                            <h4>Favorite Users</h4>
+
+                            <div ng-repeat="friend in friends">
+                                <div class="col-sm-offset-2 col-sm-8 friend">
+                                    <div class="friend-image">
+                                        <img class="img-circle" src="{{friend.profileImage || '/img/default-user.png'}}" width="150" height="150">
+                                    </div>
+
+                                    <div class="friend-info">
+                                        <h1>{{friend.username}}</h1>
+                                    </div>
+
+                                    <ul class="friend-info-list">
+                                        <li>
+                                            <a href="#profile/{{friend.username}}" class="btn btn-primary">
+                                                <i class="fa fa-user-circle"></i> Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a ng-click="unfollow(friend._id)" class="btn btn-danger">
+                                                <i class="fa fa-minus"></i>
+                                                Unfollow
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="settings" class="tab-pane">
+                            <h4>Settings</h4>
+
+                            <form class="form">
+                                <input disabled class="form-control" ng-model="$root.currentUser.username"
+                                       placeholder="Username"/><br/>
+                                <input type="password" class="form-control" ng-model="$root.currentUser.password"
+                                       placeholder="Password"/><br/>
+                                <input type="password" class="form-control" ng-model="$root.currentUser.password2"
+                                       placeholder="Confirm Password"/><br/>
+                                <input type="email" class="form-control" ng-model="$root.currentUser.email"
+                                       placeholder="Email"></br>
+                                <input class="form-control" ng-model="$root.currentUser.firstName"
+                                       placeholder="First Name"></br>
+                                <input class="form-control" ng-model="$root.currentUser.lastName"
+                                       placeholder="Last Name"></br>
+                                <input class="form-control" ng-model="$root.currentUser.zip"
+                                       placeholder="ZIP Code"></br>
+
+
+                                <button class="btn btn-primary" ng-click="update(currentUser)">Update</button>
+                                <br>
+
+                                <p class="error">{{message}}</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+Idea comes from http://bootsnipp.com/snippets/featured/user-detail-panel
+
+Enlarged and changed for our needs
+-->

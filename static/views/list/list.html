@@ -1,0 +1,39 @@
+<div ng-include src="'views/nav/nav.html'"></div>
+
+<div class="container">
+    <div style="padding-top: 50px;" class="col-sm-8 col-sm-offset-2">
+        <h2>Here are some shows close to you based on your location!</h2>
+        <br />
+        <form ng-submit="filter(search)" class="form">
+            <div class="input-group">
+                <input disabled ng-model="search" type="search" class="form-control" placeholder="Cannot Search Location Calendar">
+                <span class="input-group-btn">
+                    <a ng-click="filter(search)" class="btn btn-default"><i class="fa fa-search"></i></a>
+                </span>
+            </div>
+        </form>
+
+        <ul class="event-list" ng-repeat="show in shows">
+            <li>
+                <time datetime="{{ show.start.date }}">
+                    <span class="day">{{show.start.date | date:'dd'}}</span>
+                    <span class="month">{{show.start.date | date:'MMM'}} <a href="#details/{{ show.id }}" class="btn btn-primary"><i class="fa fa-info"></i> Info</a></span>
+                    <span class="year">{{show.start.date | date:'yyyy'}}</span>
+                    <span class="time">ALL DAY</span>
+                </time>
+                <div class="info">
+                    <span class="title">{{ show.displayName }}
+                    </span>
+
+                    <p class="desc">{{show.location.city}}</p>
+                </div>
+            </li>
+            
+        </ul>
+
+        <div align="center">
+            <a class="btn btn-primary" ng-click="previousPage()" ng-disabled="page == 1">< Previous Page</a>
+            <a class="btn btn-primary" ng-click="nextPage()" ng-disabled="maxPages == page">Next Page ></a>
+        </div>
+    </div>
+</div>

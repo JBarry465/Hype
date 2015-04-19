@@ -1,0 +1,79 @@
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand">Hype</h3>
+                    <nav>
+                        <ul class="nav masthead-nav">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#login">Login</a></li>
+                            <li class="active"><a href="#register">Register</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="inner cover" style="margin-top: 100px;">
+
+                <div>
+                    <h1>Register with Hype</h1>
+                    <hr/>
+
+                    <form class="form" style="padding-top: 50px;">
+                        <input class="form-control" ng-model="user.username" placeholder="Username"/><br/>
+                        <input type="password" class="form-control" ng-model="user.password"
+                               placeholder="Password"/><br/>
+                        <input type="password" class="form-control" ng-model="user.password2"
+                               placeholder="Confirm Password"/><br/>
+                        <input type="email" class="form-control" ng-model="user.email" placeholder="Email"></br>
+                        <input class="form-control" ng-model="user.firstName" placeholder="First Name"></br>
+                        <input class="form-control" ng-model="user.lastName" placeholder="Last Name"></br>
+                        <input class="form-control" ng-model="user.zip" placeholder="ZIP Code"></br>
+                        <hr/>
+                        <h4>Optional Fields</h4>
+
+                        <div class="well">
+                            <p>Profile Photo</p>
+
+                            <div flow-init
+                                 flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+                                 flow-files-submitted="saveImage($flow)">
+
+                                <div>
+                                    <div class="thumbnail" ng-hide="$flow.files.length">
+                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
+                                    </div>
+                                    <div class="thumbnail" ng-show="$flow.files.length">
+                                        <img flow-img="$flow.files[0]"/>
+                                    </div>
+                                    <div>
+                                        <a href="#" class="btn btn-info" ng-hide="$flow.files.length" flow-btn
+                                           flow-attrs="{accept:'image/*'}">Select image</a>
+                                        <a href="#" class="btn btn-info" ng-show="$flow.files.length" flow-btn
+                                           flow-attrs="{accept:'image/*'}">Change</a>
+                                        <a href="#" class="btn btn-danger" ng-show="$flow.files.length"
+                                           ng-click="$flow.cancel()">
+                                            Remove
+                                        </a>
+                                    </div>
+                                    <p>
+                                        Only PNG,GIF,JPG files allowed.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" ng-click="register(user)">Register</button>
+                        <br>
+
+                        <p class="error">{{message}}</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

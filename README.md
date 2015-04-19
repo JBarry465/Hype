@@ -1,2 +1,3 @@
-# Hype
-Hype
+# hype
+
+Get Hyped.

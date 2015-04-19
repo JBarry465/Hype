@@ -1,0 +1,98 @@
+<div ng-include src="'views/nav/nav.html'"></div>
+
+<div class="container">
+    <div class="col-sm-12 event-details">
+        <div class="col-sm-12 event-info-block">
+            <div class="time-wrapper">
+                <time datetime="04-02-2015">
+                    <span class="day">{{event.start.date | date:'dd'}}</span>
+                    <span class="month">{{event.start.date | date:'MMM'}}</span>
+                    <span class="year">{{event.start.date | date:'yyyy'}}</span>
+                </time>
+
+                <a ng-click="favoriteIt()" ng-show="!favorite" class="btn btn-warning favbut"><i class="fa fa-star"></i>Favorite</a>
+                <a ng-click="unfavoriteIt()" ng-show="favorite" class="btn btn-danger favbut">
+                    <i class="fa fa-star"></i>Unfavorite
+                </a>
+            </div>
+
+            <div class="col-sm-8 event-center">
+                <h1>{{event.displayName}}</h1>
+
+                <br>
+
+                <div class="panel panel-info col-sm-6">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" id="panel-title">Details<a class="anchorjs-link" href="#panel-title">
+                            <span class="anchorjs-icon"></span></a></h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><b>Artists</b></td>
+                                    <td>
+                                        <ul ng-repeat="artist in event.performance">
+                                            <li>
+                                                <a href="{{artist.artist.uri}}">{{artist.displayName}} ({{artist.billing || "N/A"}})</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Venue</b></td>
+                                    <td>{{ event.venue.displayName }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Location</b></td>
+                                    <td>{{ event.location.city }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Age Restriction</b></td>
+                                    <td>{{ event.ageRestriction || "None" }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div ng-show="songs" class="col-sm-3">
+                    <span>
+                        <iframe ng-src="{{songs}}"
+                            width="640px"
+                            height="400px"
+                            frameborder="0" allowtransparency="true"></iframe>
+                    </span>
+                </div>
+
+                <div ng-show="!songs">
+                    No playlist available.
+                </div>
+
+                <div align="center">
+                    <div class="user-comments col-lg-12">
+                        <div ng-model="CommentModel" ng-repeat="comment in eventComments">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="comment-info">
+                                        <b><a href="#profile/{{comment.userId}}">{{comment.userId}}</a> on {{comment.date}}</b>
+                                    </div>
+                                    <div class="comment-body">
+                                        <br>
+                                        {{comment.comment}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <textarea ng-model="commentText" class="form-control" rows="3" placeholder="Add Comment..."></textarea>
+                        <div>
+                            <a class="btn btn-success pull-right" ng-click="submitEventComment(currentUser.username, event.id, commentText)">Submit</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>

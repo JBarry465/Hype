@@ -1,0 +1,133 @@
+body {
+    background: #EAEAEA;
+}
+
+.user-details {
+    position: relative;
+    padding-top: 30px;
+}
+
+.user-details .user-image {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.user-image img {
+    clear: both;
+    margin: auto;
+    position: relative;
+}
+
+.user-details .user-info-block {
+    position: absolute;
+    top: 130px;
+    background: rgb(255, 255, 255);
+    z-index: 0;
+    padding-top: 35px;
+}
+
+.user-info-block .user-heading {
+    text-align: center;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #5bc0de;
+}
+
+.user-info-block .navigation {
+    float: left !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+    border-bottom: 1px solid #5bc0de !important;
+    border-top: 1px solid #5bc0de !important;
+    width: 100% !important;
+}
+
+.navigation li {
+    float: left !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 25% !important;
+}
+
+.navigation a {
+    padding: 20px !important;
+    float: left !important;
+    color: #5bc0de;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.navigation .active a {
+    background: #5bc0de;
+    color: #fff;
+}
+
+.navigation .disabled a {
+    background: #fff !important;
+}
+
+.user-info-block .user-body {
+    padding: 5%;
+    width: 95%;
+}
+
+.user-body .tab-content > div {
+    float: left;
+    width: 100%;
+}
+
+.user-body .tab-content h4 {
+    width: 100%;
+    margin: 10px 0;
+    color: #333;
+}
+
+.col-sm-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.friend {
+
+    margin-bottom: 10px;
+    background-color: rgb(245, 245, 245);
+
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+}
+
+.friend-image {
+    float: left;
+}
+
+.friend-right {
+    float: right;
+    top: 0px;
+}
+
+.grids-left {
+    float: left;
+}
+.friend-info h1 {
+    text-align: center;
+    color: #000;
+    border-bottom: 1px solid#D3D3D3;
+    width: 50%;
+    margin: 0 auto;
+    padding: 0.5em;
+    font-size: 2.5em;
+    font-weight: 300;
+}
+
+
+ul.friend-info-list li {
+    display: inline-block;
+    padding: 0px 38px 0 45px;
+    font-size: 24px;
+    color: #999;
+    padding-top: 10px;
+}
